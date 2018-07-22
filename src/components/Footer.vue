@@ -2,15 +2,15 @@
   <footer class="goods-footer cui-flex cui-flex-algin">
     <div class="goods-footer-info cui-flex cui-flex-item cui-flex-algin">
       <p class="goods-tatol-price">
-        {{ $t("message.total") }}:<b class="price-box">¥ <span class="price-info">{{ tatolPrice || 0 }}</span></b></b>
+        {{ $t("message.total") }}:<b class="price-box">¥ <span class="price-info">{{ totalPrice || 0 }}</span></b></b>
       </p>
       <p class="cui-flex-item goods-delivery-price">
         {{ $t("message.fee") }}:¥ {{ deliveryPrice }}
 				</p>
     </div>
     <button type="button" class="goods-submit"
-            :class="{'goods-submit-active': tatolPrice >= parseFloat(minPrice) }">
-      {{ cartStatus }}({{ tatolNum }})
+            :class="{'goods-submit-active': totalPrice >= parseFloat(minPrice) }">
+      {{ cartStatus }}({{ totalNum }})
     </button>
   </footer>
 </template>
@@ -21,13 +21,13 @@
     name: 'Footer',
     computed: {
       ...mapState(['minPrice', 'deliveryPrice']),
-      ...mapGetters(['tatolPrice', 'tatolNum']),
+      ...mapGetters(['totalPrice', 'totalNum']),
       cartStatus(){
         let cartStatusInfo = '';
-        if (this.tatolPrice == 0) {
+        if (this.totalPrice == 0) {
           cartStatusInfo = `${ this.minPrice}` + this.$t("message.send")
-        } else if (parseFloat(this.tatolPrice) < this.minPrice && parseFloat(this.tatolPrice) > 0) {
-          cartStatusInfo = this.$t("message.owe") + `${this.minPrice - this.tatolPrice}` + this.$t("message.send");
+        } else if (parseFloat(this.totalPrice) < this.minPrice && parseFloat(this.totalPrice) > 0) {
+          cartStatusInfo = this.$t("message.owe") + `${this.minPrice - this.totalPrice}` + this.$t("message.send");
         } else {
           cartStatusInfo = this.$t("message.pay")
         }

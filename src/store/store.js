@@ -90,26 +90,26 @@ export default new Vuex.Store({
     // getter 的返回值会根据它的依赖被缓存起来，且只有当它的依赖值发生了改变才会被重新计算。
     // Getter 接受 state 作为其第一个参数
     // getter 在通过属性访问时是作为 Vue 的响应式系统的一部分缓存其中的。
-    tatolPrice(state){
-      let tatolP = 0;
+    totalPrice(state){
+      let totalP = 0;
       state.goods.forEach((val, index) => {
-        tatolP += val.num * val.price;
+        totalP += val.num * val.price;
       });
 
-      if (tatolP > 0) {
-        tatolP = parseFloat(tatolP) + parseInt(state.deliveryPrice)
+      if (totalP > 0) {
+        totalP = parseFloat(totalP) + parseInt(state.deliveryPrice)
       } else {
-        tatolP = 0;
+        totalP = 0;
       }
 
-      return tatolP.toFixed(2);
+      return totalP.toFixed(2);
     },
-    tatolNum(state){
-      let tatolN = 0;
+    totalNum(state){
+      let totalN = 0;
       state.goods.forEach((val, index) => {
-        tatolN += val.num;
+        totalN += val.num;
       })
-      return tatolN;
+      return totalN;
     },
     // getter 在通过方法访问时，每次都会去进行调用，而不会缓存结果。
     getGoodById: (state) => (index) => {

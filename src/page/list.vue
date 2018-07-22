@@ -24,7 +24,7 @@
     props: ['lang'],
     computed: {
       ...mapState(['goods']),
-      ...mapGetters(['tatolPrice', 'tatolNum'])
+      ...mapGetters(['totalPrice', 'totalNum'])
     },
     components: {
       Scroll,
